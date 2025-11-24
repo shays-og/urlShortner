@@ -1,9 +1,10 @@
 const express = require("express");
 const app = express();
 
-const data = "hello there, this an url shortner backend. I am developing this to self-learn many concepts through research and first principles." 
+const data = "hello there, this an url shortner backend. I am developing this to self-learn many concepts through research and first principles. First thing which i am thinking of implementing is redirect functionality. So what i am gonna do that is i am going to read docs for redirecting to a website." 
+
 app.get("/", (req, res) => {
-    res.send(data)
+    res.redirect("https://www.youtube.com/")
 })
 
 
