@@ -1,7 +1,10 @@
 const express = require("express");
 const app = express();
 
-const data = "hello there, this an url shortner backend. I am developing this to self-learn many concepts through research and first principles. First thing which i am thinking of implementing is redirect functionality. So what i am gonna do that is i am going to read docs for redirecting to a website." 
+const dataBase = [{
+    "longUrl": "https://aeon.co/essays/should-we-act-morally-towards-trees-empedocles-says-yes",
+    "shortUrl": "aeonEssay"
+}]
 
 app.get("/", (req, res) => {
     res.redirect("https://www.youtube.com/")
@@ -9,8 +12,10 @@ app.get("/", (req, res) => {
 
 app.get("/:shortHash", (req, res) => {
     const shortHash = req.params.shortHash;
-
-    res.send(data + shortHash)
+    if(shortHash == dataBase[0].shortUrl){
+        return res.redirect(dataBase[0].longUrl)
+    }
+    res.send(shortHash)
 })
 
 app.listen(3000, () => {
