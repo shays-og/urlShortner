@@ -7,6 +7,11 @@ app.get("/", (req, res) => {
     res.redirect("https://www.youtube.com/")
 })
 
+app.get("/:shortHash", (req, res) => {
+    const shortHash = req.params.shortHash;
+
+    res.send(data + shortHash)
+})
 
 app.listen(3000, () => {
     console.log("Listening to port 3000")
