@@ -1,0 +1,1 @@
+curl -X POST -H "Content-Type:application/json" -d '{"longUrl": "https://github.com/jayxin/Ilya-30u30"}' http://localhost:3000/

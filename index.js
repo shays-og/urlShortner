@@ -1,19 +1,31 @@
 const express = require("express");
+const shorturl = require("./src/short-hash");
 const app = express();
+
+app.use(express.json())
 
 const dataBase = [{
     "longUrl": "https://aeon.co/essays/should-we-act-morally-towards-trees-empedocles-says-yes",
     "shortUrl": "aeonEssay"
 }]
-
-app.get("/", (req, res) => {
-    res.redirect("https://www.youtube.com/")
+const shotrl = shorturl();
+console.log(shotrl)
+app.post("/", (req, res) => {
+    const longlUrl = req.body.longUrl; 
+    dataBase.push({
+        "longUrl": longlUrl,
+        "shortUrl": shorturl()
+    })
+    console.log(dataBase)
+    res.json(dataBase)
 })
 
 app.get("/:shortHash", (req, res) => {
     const shortHash = req.params.shortHash;
-    if(shortHash == dataBase[0].shortUrl){
-        return res.redirect(dataBase[0].longUrl)
+    for (let i = 0; i < dataBase.length; i++){
+        if(shortHash == dataBase[i].shortUrl){
+            return res.redirect(dataBase[i].longUrl)
+        }
     }
     res.send(shortHash)
 })
